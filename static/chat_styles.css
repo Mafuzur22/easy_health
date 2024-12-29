@@ -1,0 +1,82 @@
+#send_btn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    max-width: 100px;
+    cursor: pointer;
+}
+
+#send_btn:hover {
+    background-color: #444;
+}
+
+#chatBox {
+    margin-top: 20px;
+}
+
+.chat-box input {
+    width: 60%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    align-self: flex-end;
+}
+
+#send_btn {
+    margin-top: 10px;
+}
+.chat-container {
+    width: 40%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+}
+.chat-container p{
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.chat-history {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    max-height: 300px;
+}
+
+.chat-history p {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+.wellcome{
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+.chat-history .you {
+    background-color: #e1f7d5; /* Light green for your messages */
+    align-self: flex-end;
+}
+
+.chat-history .other {
+    background-color: #d9e3f5; /* Light blue for others' messages */
+    align-self: flex-start;
+}
+

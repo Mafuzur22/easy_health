@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment Booking</title>
+    <link rel="stylesheet" href="{% static "styles.css" %}">
+    <link rel="stylesheet" href="{% static "chat_styles.css" %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <h1>EASY Health Care</h1>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#doctors">Available Doctors</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#appointments">Appointments</a></li>
+                <li><a href="/assistant">AI Assistant</a></li>
+                {% if user.is_authenticated %}
+        <div class="user_info">
+            <span>Welcome, {{ user.username }}!</span>
+            <form method="post" action="/logout">
+                {% csrf_token %}
+                <input type="submit" value="Logout">
+            </form>
+        </div>
+        {% else %}
+        
+        <div class="user">
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
+                </div>
+                {% endif %}
+            </ul>
+            
+        </div>
+    </nav>
+
+    <section id="assistant" class="section">
+        <div class="glass-card">
+            
+            <form id="chatBox" class="chat-box chat-container" method="POST" action="/assistant">
+                {% csrf_token %}
+                
+                <div id="chat-history" class="chat-history">
+                    <!-- Chat history will be displayed here -->
+                    <p class="other wellcome"><strong>AI Assistant:</strong> How can I assist you today?</p>
+                    {% for chat in chat_data %}
+                    {% if chat.type == "user" %}
+                    <p class="you"><strong>User:</strong> {{chat.message_data}}</p>
+                    {% else %}
+                    <p class="other"><strong>AI Assistant:</strong> {{chat.message_data}}</p>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+
+                <input type="text" id="userInput" placeholder="Ask me something..." name="userInput" required>
+                <input type="submit" value="Send" id="send_btn" onClick="scrollToBottom()">
+                
+            </form>
+        </div>
+    </section>
+
+    <script>
+        var scrollableDiv = document.getElementById("chat-history");
+        window.onload = function() {
+            scrollableDiv.scrollTop = scrollableDiv
+                .scrollHeight;
+        }
+
+    </script>
+</body>
+</html>

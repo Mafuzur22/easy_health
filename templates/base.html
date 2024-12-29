@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment Booking</title>
+    <link rel="stylesheet" href="{% static "styles.css" %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <h1>EASY Health Care</h1>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#doctors">Available Doctors</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#appointments">Appointments</a></li>
+                <li><a href="/assistant">AI Assistant</a></li>
+                
+                    {% if user.is_authenticated %}
+        <div class="user_info">
+            <span>Welcome, {{ user.username }}!</span>
+            <form method="post" action="/logout">
+                {% csrf_token %}
+                <input type="submit" value="Logout">
+            </form>
+        </div>
+        {% else %}
+        
+        <div class="user">
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
+                </div>
+                {% endif %}
+            </ul>
+            
+        </div>
+    </nav>
+
+    <section id="doctors" class="section">
+        <div class="glass-card">
+            <h2>Available Doctors</h2>
+            <div class="doctor-cards">
+                <div class="doctor-card">
+                    <img src="{% static "images/blank-profile.jpg" %}" alt="Dr. John Doe" class="doctor-image">
+                    <h3>Dr. John Doe</h3>
+                    <p class="specialization">Cardiologist</p>
+                    <p class="description">Dr. John Doe specializes in heart diseases and cardiovascular health. With over 15 years of experience, he provides personalized treatment plans for all heart conditions.</p>
+                </div>
+
+                <div class="doctor-card">
+                    <img src="{% static "images/blank-profile.jpg" %}" alt="Dr. Jane Smith" class="doctor-image">
+                    <h3>Dr. Jane Smith</h3>
+                    <p class="specialization">Dermatologist</p>
+                    <p class="description">Dr. Jane Smith is a renowned dermatologist with expertise in treating skin conditions. She provides expert care for acne, eczema, and other skin ailments.</p>
+                </div>
+
+                <div class="doctor-card">
+                    <img src="{% static "images/blank-profile.jpg" %}" alt="Dr. Emily White" class="doctor-image">
+                    <h3>Dr. Emily White</h3>
+                    <p class="specialization">Pediatrician</p>
+                    <p class="description">Dr. Emily White is passionate about children’s health, specializing in pediatric care. She offers compassionate treatment for children from infancy through adolescence.</p>
+                </div>
+
+                <div class="doctor-card">
+                    <img src="{% static "images/blank-profile.jpg" %}" alt="Dr. Mark Black" class="doctor-image">
+                    <h3>Dr. Mark Black</h3>
+                    <p class="specialization">Orthopedic Surgeon</p>
+                    <p class="description">Dr. Mark Black is an expert in orthopedic surgery, providing surgical and non-surgical treatments for joint pain, fractures, and bone disorders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="glass-card">
+            <h2>Our Services</h2>
+            <div class="service-cards">
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('cardiology.jpg');">
+                        <div class="overlay">
+                            <h3>Cardiology</h3>
+                            <p>Heart disease prevention, diagnostics, and treatments.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('dermatology.jpg');">
+                        <div class="overlay">
+                            <h3>Dermatology</h3>
+                            <p>Expert care for skin conditions such as acne and eczema.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('pediatrics.jpg');">
+                        <div class="overlay">
+                            <h3>Pediatrics</h3>
+                            <p>Comprehensive healthcare for children from infancy to adolescence.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('orthopedics.jpg');">
+                        <div class="overlay">
+                            <h3>Orthopedics</h3>
+                            <p>Expert care for bones, joints, and musculoskeletal issues.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="appointments" class="section">
+        <div class="glass-card">
+            <h2>Book an Appointment</h2>
+            <form id="appointmentForm">
+                <label for="doctor">Choose a Doctor:</label>
+                <select id="doctor" required>
+                    <option value="Dr. John Doe">Dr. John Doe - Cardiologist</option>
+                    <option value="Dr. Jane Smith">Dr. Jane Smith - Dermatologist</option>
+                    <option value="Dr. Emily White">Dr. Emily White - Pediatrician</option>
+                    <option value="Dr. Mark Black">Dr. Mark Black - Orthopedic Surgeon</option>
+                </select>
+                <br><br>
+                <label for="date">Choose Date:</label>
+                <input type="date" id="date" required>
+                <br><br>
+                <button type="submit">Book Appointment</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="assistant" class="section">
+        <div class="glass-card">
+            <h2>AI Health Assistant</h2>
+            <p>How can I assist you today?</p>
+            <button id="startChat"><a href="/assistant" class="start_chat">Start Chat</a></button>
+            
+        </div>
+    </section>
+
+    <script src="{% static "script.js" %}"></script>
+</body>
+</html>
