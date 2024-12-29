@@ -10,4 +10,8 @@ class ChatData(models.Model):
     timestamp = models.DateField(default=now)
     def __str__(self):
         return self.user.username
+
+class BookAppointment(models.Model):
+    user = models.ForeignKey(on_delete=models.CASCADE, related_name="user_appointments")
+    doc_name = models.CharField(max_length=50)
     
