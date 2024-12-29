@@ -13,9 +13,9 @@
             <h1>EASY Health Care</h1>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="#doctors">Available Doctors</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#appointments">Appointments</a></li>
+                <li><a href="/#doctors">Available Doctors</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/appointment">Appointments</a></li>
                 <li><a href="/assistant">AI Assistant</a></li>
                 
                     {% if user.is_authenticated %}
@@ -120,9 +120,10 @@
     <section id="appointments" class="section">
         <div class="glass-card">
             <h2>Book an Appointment</h2>
-            <form id="appointmentForm">
+            <form id="appointmentForm" method="POST" action="/appointment">
+                {% csrf_token %}
                 <label for="doctor">Choose a Doctor:</label>
-                <select id="doctor" required>
+                <select id="doctor" name="doctor" required>
                     <option value="Dr. John Doe">Dr. John Doe - Cardiologist</option>
                     <option value="Dr. Jane Smith">Dr. Jane Smith - Dermatologist</option>
                     <option value="Dr. Emily White">Dr. Emily White - Pediatrician</option>
@@ -130,7 +131,7 @@
                 </select>
                 <br><br>
                 <label for="date">Choose Date:</label>
-                <input type="date" id="date" required>
+                <input type="date" id="date" name="date" required>
                 <br><br>
                 <button type="submit">Book Appointment</button>
             </form>

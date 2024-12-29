@@ -1,3 +1,4 @@
+from sqlite3 import Timestamp
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now
@@ -11,7 +12,5 @@ class ChatData(models.Model):
     def __str__(self):
         return self.user.username
 
-class BookAppointment(models.Model):
-    user = models.ForeignKey(on_delete=models.CASCADE, related_name="user_appointments")
-    doc_name = models.CharField(max_length=50)
+
     

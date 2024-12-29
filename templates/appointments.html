@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Appointment Booking</title>
     <link rel="stylesheet" href="{% static "styles.css" %}">
-    <link rel="stylesheet" href="{% static "chat_styles.css" %}">
+    <link rel="stylesheet" href="{% static "appointment_styles.css" %}">
 </head>
 <body>
     <nav class="navbar">
@@ -37,38 +37,38 @@
             
         </div>
     </nav>
-
-    <section id="assistant" class="section">
+    <section id="appointments" class="section">
         <div class="glass-card">
-            
-            <form id="chatBox" class="chat-box chat-container" method="POST" action="/assistant">
+            <h2>Book an Appointment</h2>
+            <form id="appointmentForm" method="POST" action="/appointment">
                 {% csrf_token %}
-                
-                <div id="chat-history" class="chat-history">
-                    <!-- Chat history will be displayed here -->
-                    <p class="other wellcome"><strong>AI Assistant:</strong> How can I assist you today?</p>
-                    {% for chat in chat_data %}
-                    {% if chat.type == "user" %}
-                    <p class="you"><strong>User:</strong> {{chat.message_data}}</p>
-                    {% else %}
-                    <p class="other"><strong>AI Assistant:</strong> {{chat.message_data}}</p>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-
-                <input type="text" id="userInput" placeholder="Ask me something..." name="userInput" required>
-                <input type="submit" value="Send" id="send_btn" onClick="scrollToBottom()">
-                
+                <label for="doctor">Choose a Doctor:</label>
+                <select id="doctor" name="doctor" required>
+                    <option value="Dr. John Doe">Dr. John Doe - Cardiologist</option>
+                    <option value="Dr. Jane Smith">Dr. Jane Smith - Dermatologist</option>
+                    <option value="Dr. Emily White">Dr. Emily White - Pediatrician</option>
+                    <option value="Dr. Mark Black">Dr. Mark Black - Orthopedic Surgeon</option>
+                </select>
+                <br><br>
+                <label for="date">Choose Date:</label>
+                <input type="date" id="date" name="date" required>
+                <br><br>
+                <button type="submit">Book Appointment</button>
             </form>
         </div>
     </section>
+    <section id="appointments">
+        <div class="app_list">
+            <ul>{% for appointment in appointments %}
+                <li>You have an Appointment at {{appointment.app_date}} with Doctor: {{appointment.doc_name}}</li>
+               {% endfor %}
+            </ul>
+        </div>
+        
+    </section>
 
     <script>
-        var scrollableDiv = document.getElementById("chat-history");
-        window.onload = function() {
-            scrollableDiv.scrollTop = scrollableDiv
-                .scrollHeight;
-        }
+        
 
     </script>
 </body>
