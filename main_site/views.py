@@ -41,6 +41,7 @@ def login_view(requests):
 
         else:
             messages.error(requests, "User Not Found")
+            return redirect('/login')
     else:
 
         return render(requests, 'login.html')
