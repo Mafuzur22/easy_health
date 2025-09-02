@@ -1,3 +1,4 @@
+![Easy_Health Banner](demo/easy_health_home.png)
 It's an online portal for booking appointments with available doctors, enhanced by an AI assistant.
 
 # easy_health
