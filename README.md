@@ -13,7 +13,6 @@ It's an online portal for booking appointments with available doctors, enhanced 
 - [Usage](#usage)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
-- [License](#license)
 - [Contact](#contact)
 
 ## Overview
@@ -33,7 +32,7 @@ Built using:
 - Framework: Django
 
 ## Demo
-
+You can visit a live link : `https://mafuzur22.pythonanywhere.com/`
 ## Installation
 
 1. **Clone the repository**
